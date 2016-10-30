@@ -1,0 +1,32 @@
+/// <summary>
+/// Obtiene o establece $Descripcion$
+/// </summary>
+    public string $PropertyName$
+    {
+        get
+        {
+            if (this.cObj.IsNull["$MPName$"])
+            { return string.Empty; }
+            else
+            { return (string)this.cObj["$MPName$"]; }
+        }
+        set
+        {
+            // if (value.Equals(string.Empty)) throw new Exception("El valor de $PropertyName$ no puede ser cadena nula.");
+            if (value.Length > $Length$) { throw new Exception("$PropertyName$ debe tener un m&aacute;ximo de $Length$ caracteres."); }
+            this.cObj["$MPName$"] = value;
+        }
+
+        // ToDo Copie y cotre la siguiente l&iacute;nea y p&eacute;guela la regi&oacute;n "Propiedades" del m&eacute;todo Initializes.
+        lTpObj.Add(MIRA.Data.Property.NewObject(lTpObj, "$MPName$", "$FieldName$", typeof(System.String), $Length$));
+
+        // ToDo Copie y cotre la siguiente linea y p&eacute;guela en la Interfaz de la clase.
+        string $PropertyName$ { get; set; }
+
+        // ToDo Copie y cotre la siguiente linea y p&eacute;guela en el m&eacute;todo Get.
+        pData.$PropertyName$ = this.$PropertyName$;
+
+        // ToDo Copie y cotre la siguiente linea y p&eacute;guela en el m&eacute;todo Set.
+        this.$PropertyName$ = pData.$PropertyName$;
+
+    }
