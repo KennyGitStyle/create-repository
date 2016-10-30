@@ -1,0 +1,52 @@
+// setup the global SqlConnection object and constr in your class
+
+  private SqlConnection con = null;
+  private string constr ="Integrated Security=SSPI;" +
+  "Initial Catalog=Northwind;" +
+  "Data Source=SONY\\MYSQLSERVER;";
+  
+  private void fnGetConnection()
+  {
+    try
+    {
+       // setup the database connection
+       con = new SqlConnection(constr);
+       con.Open();
+     }catch (Exception ex) {
+        MessageBox.Show("Error in connection : " + ex.Message);
+     }finally {
+        // dispose of open objects
+        if (con != null)
+          con.Close();
+     } //finally
+ }
+ 
+//For example: you want to open the connection, fill the DataSet, and close the connection. If the connection fails, you want to get the error message. 
+ try
+{
+  con.Open();
+  dadapter.Fill(dataset1);
+  con.Close();
+} catch (Exception ex) {
+   MessageBox.Show("Error in retrieving data: " + ex.Message);
+}
+/*The DataSet is similar to an array of disconnected Recordset objects. It supports disconnected data access and operations, allowing greater scalability because you no longer have to be connected to the database all the time. DataSet is a copy of an extracted data being downloaded and cached in the client system.
+The DataSet object is made up of two objects:
+DataTableCollection object containing null or multiple DataTable objects (Columns, Rows, Constraints).
+DataRelationCollection object containing null or multiple DataRelation objects which establish a parent/child relation between two DataTable objects.*/
+try
+{
+  DataSet changes = dataset.GetChanges();
+  con.Open();
+  datapter.Update(changes);
+  con.Close();
+  dataset1.AcceptChanges();
+}catch (Exception ex) {
+  MessageBox.Show("ErrorR: " + ex.Message);
+  dataset1.RejectChanges();
+  con.Close();//Create a DataSet
+
+//Create a DataSet
+  DataSet dset = new DataSet();
+}
+
